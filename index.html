@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signholic - Mobile Games & Apps</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #F5EDDA 0%, #fff 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: #4A4340;
+        }
+        .container {
+            text-align: center;
+            max-width: 600px;
+        }
+        .logo {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #4A4340;
+        }
+        .logo span {
+            color: #D4787A;
+        }
+        .tagline {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+        .apps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .app-card {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            width: 150px;
+            transition: transform 0.2s;
+        }
+        .app-card:hover {
+            transform: translateY(-5px);
+        }
+        .app-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .app-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .links {
+            margin-top: 2rem;
+        }
+        .links a {
+            color: #7DBCAA;
+            text-decoration: none;
+            margin: 0 1rem;
+        }
+        .links a:hover {
+            text-decoration: underline;
+        }
+        footer {
+            margin-top: 3rem;
+            color: #999;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">Sign<span>holic</span></div>
+        <p class="tagline">Simple & Beautiful Mobile Games & Apps</p>
+        
+        <div class="apps">
+            <div class="app-card">
+                <div class="app-icon">🃏</div>
+                <div class="app-name">MemoryFlip</div>
+            </div>
+            <div class="app-card">
+                <div class="app-icon">💨</div>
+                <div class="app-name">BreathMate</div>
+            </div>
+            <div class="app-card">
+                <div class="app-icon">🎯</div>
+                <div class="app-name">SignBlast</div>
+            </div>
+            <div class="app-card">
+                <div class="app-icon">📅</div>
+                <div class="app-name">DayHolic</div>
+            </div>
+        </div>
+        
+        <div class="links">
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="mailto:signholic.dev@gmail.com">Contact</a>
+        </div>
+        
+        <footer>
+            &copy; 2026 Signholic. All rights reserved.
+        </footer>
+    </div>
+</body>
+</html>
