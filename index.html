@@ -4,10 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signholic - Mobile Games & Apps</title>
+    <link rel="icon" type="image/png" href="logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --cream: #F5EDDA;
+            --charcoal: #4A4340;
+            --red: #D4787A;
+            --yellow: #C4A84D;
+            --green: #7DBCAA;
+        }
+        
         * {
             margin: 0;
             padding: 0;
@@ -16,289 +25,455 @@
         
         body {
             font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: #F5EDDA;
+            background: var(--cream);
             min-height: 100vh;
-            color: #4A4340;
+            color: var(--charcoal);
             overflow-x: hidden;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(245, 237, 218, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            border-bottom: 1px solid rgba(74, 67, 64, 0.1);
+        }
+        
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--charcoal);
+        }
+        
+        .nav-logo img {
+            height: 40px;
+        }
+        
+        .nav-logo span {
+            font-weight: 600;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: var(--charcoal);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            opacity: 0.8;
+            transition: all 0.2s;
+        }
+        
+        .nav-links a:hover {
+            opacity: 1;
+            color: var(--red);
         }
         
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #F5EDDA 0%, #fff 50%, #F5EDDA 100%);
-            padding: 80px 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 20px 80px;
             text-align: center;
+            background: linear-gradient(180deg, var(--cream) 0%, #fff 50%, var(--cream) 100%);
             position: relative;
         }
         
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4787A' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            pointer-events: none;
+        .hero-logo {
+            width: 180px;
+            height: auto;
+            margin-bottom: 30px;
+            animation: float 3s ease-in-out infinite;
         }
         
-        .logo {
-            font-size: 3.5rem;
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .hero-title {
+            font-size: 3rem;
             font-weight: 700;
-            margin-bottom: 0.5rem;
-            letter-spacing: -1px;
-            position: relative;
-            display: inline-block;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            color: var(--charcoal);
         }
         
-        .logo span {
-            background: linear-gradient(135deg, #D4787A, #C4A84D);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .tagline {
+        .hero-subtitle {
             font-size: 1.1rem;
-            color: #888;
             font-weight: 300;
-            margin-bottom: 1rem;
+            color: #888;
+            margin-bottom: 40px;
         }
         
-        .hero-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, #7DBCAA, #5BA08E);
-            color: white;
-            padding: 8px 20px;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            margin-top: 1rem;
+        .hero-colors {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        
+        .color-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .color-dot.red { background: var(--red); }
+        .color-dot.yellow { background: var(--yellow); }
+        .color-dot.green { background: var(--green); }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            opacity: 0.5;
+        }
+        
+        .scroll-indicator span {
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        .scroll-arrow {
+            width: 20px;
+            height: 20px;
+            border-right: 2px solid var(--charcoal);
+            border-bottom: 2px solid var(--charcoal);
+            transform: rotate(45deg);
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: rotate(45deg) translateY(0); }
+            50% { transform: rotate(45deg) translateY(5px); }
         }
         
         /* Section */
         .section {
-            padding: 60px 20px;
-            max-width: 1000px;
+            padding: 100px 40px;
+            max-width: 1200px;
             margin: 0 auto;
         }
         
-        .section-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 2rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
         }
         
-        .section-title::after {
-            content: '';
-            flex: 1;
-            height: 2px;
-            background: linear-gradient(90deg, #D4787A, transparent);
-            border-radius: 2px;
+        .section-tag {
+            display: inline-block;
+            padding: 8px 20px;
+            background: var(--charcoal);
+            color: white;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .section-desc {
+            font-size: 1rem;
+            color: #888;
+            max-width: 500px;
+            margin: 0 auto;
         }
         
         /* App Grid */
         .app-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
         }
         
         .app-card {
             background: white;
-            border-radius: 20px;
-            padding: 2rem 1.5rem;
+            border-radius: 24px;
+            padding: 40px 30px;
             text-align: center;
-            box-shadow: 0 10px 40px rgba(74, 67, 64, 0.08);
-            transition: all 0.3s ease;
+            box-shadow: 0 20px 60px rgba(74, 67, 64, 0.08);
+            transition: all 0.4s ease;
             text-decoration: none;
             color: inherit;
             display: block;
             position: relative;
-            overflow: hidden;
-        }
-        
-        .app-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #D4787A, #C4A84D, #7DBCAA);
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            border: 2px solid transparent;
         }
         
         .app-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 60px rgba(74, 67, 64, 0.15);
-        }
-        
-        .app-card:hover::before {
-            opacity: 1;
+            transform: translateY(-10px);
+            box-shadow: 0 30px 80px rgba(74, 67, 64, 0.12);
+            border-color: var(--green);
         }
         
         .app-card.coming-soon {
-            opacity: 0.7;
+            opacity: 0.6;
         }
         
         .app-card.coming-soon:hover {
-            transform: translateY(-4px);
+            transform: translateY(-5px);
+            border-color: var(--yellow);
         }
         
         .app-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 1rem;
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 25px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.5rem;
+            font-size: 3rem;
+            background: var(--cream);
+            border-radius: 24px;
         }
         
         .app-icon img {
-            width: 80px;
-            height: 80px;
-            border-radius: 18px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            width: 100px;
+            height: 100px;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
         
         .app-name {
-            font-weight: 600;
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
+            font-weight: 700;
+            font-size: 1.4rem;
+            margin-bottom: 10px;
         }
         
         .app-desc {
-            font-size: 0.85rem;
+            font-size: 0.95rem;
             color: #888;
-            margin-bottom: 1rem;
+            margin-bottom: 25px;
+            line-height: 1.6;
         }
         
         .app-badge {
-            display: inline-block;
-            padding: 6px 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
             border-radius: 50px;
-            font-size: 0.75rem;
-            font-weight: 500;
+            font-size: 0.85rem;
+            font-weight: 600;
         }
         
         .app-badge.live {
-            background: linear-gradient(135deg, #7DBCAA, #5BA08E);
+            background: var(--green);
             color: white;
         }
         
         .app-badge.soon {
-            background: #F5EDDA;
-            color: #C4A84D;
+            background: rgba(196, 168, 77, 0.15);
+            color: var(--yellow);
         }
         
         /* Footer */
         footer {
-            background: #4A4340;
+            background: var(--charcoal);
             color: white;
-            padding: 40px 20px;
-            text-align: center;
+            padding: 60px 40px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .footer-brand img {
+            height: 50px;
+            filter: brightness(0) invert(1);
+        }
+        
+        .footer-brand span {
+            font-weight: 600;
+            font-size: 1.3rem;
+            letter-spacing: 1px;
         }
         
         .footer-links {
             display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
+            gap: 40px;
         }
         
         .footer-links a {
-            color: rgba(255,255,255,0.8);
+            color: rgba(255,255,255,0.7);
             text-decoration: none;
             font-size: 0.9rem;
             transition: color 0.2s;
         }
         
         .footer-links a:hover {
-            color: #7DBCAA;
+            color: var(--green);
+        }
+        
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 40px auto 0;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
         }
         
         .copyright {
-            color: rgba(255,255,255,0.5);
+            color: rgba(255,255,255,0.4);
             font-size: 0.85rem;
         }
         
         /* Responsive */
-        @media (max-width: 600px) {
-            .logo {
-                font-size: 2.5rem;
+        @media (max-width: 768px) {
+            nav {
+                padding: 15px 20px;
             }
-            .hero {
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-logo {
+                width: 120px;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .section {
                 padding: 60px 20px;
             }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
             .app-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1rem;
+                grid-template-columns: 1fr;
             }
-            .app-card {
-                padding: 1.5rem 1rem;
-            }
-            .app-icon {
-                width: 60px;
-                height: 60px;
-            }
-            .app-icon img {
-                width: 60px;
-                height: 60px;
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="nav-logo">
+            <img src="logo.png" alt="Signholic">
+            <span>SIGNHOLIC</span>
+        </a>
+        <div class="nav-links">
+            <a href="#games">Games</a>
+            <a href="#apps">Apps</a>
+            <a href="mailto:sinho8976@gmail.com">Contact</a>
+        </div>
+    </nav>
+    
     <!-- Hero -->
     <section class="hero">
-        <div class="logo">Sign<span>holic</span></div>
-        <p class="tagline">Simple & Beautiful Mobile Experiences</p>
-        <div class="hero-badge">🎮 Games & Apps Studio</div>
+        <img src="logo.png" alt="Signholic" class="hero-logo">
+        <h1 class="hero-title">SIGNHOLIC</h1>
+        <p class="hero-subtitle">Simple & Beautiful Mobile Experiences</p>
+        <div class="hero-colors">
+            <div class="color-dot red"></div>
+            <div class="color-dot yellow"></div>
+            <div class="color-dot green"></div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <div class="scroll-arrow"></div>
+        </div>
     </section>
     
     <!-- Games Section -->
-    <section class="section">
-        <h2 class="section-title">🎮 Games</h2>
+    <section class="section" id="games">
+        <div class="section-header">
+            <div class="section-tag">🎮 GAMES</div>
+            <h2 class="section-title">Play & Enjoy</h2>
+            <p class="section-desc">간단하지만 중독성 있는 모바일 게임을 만듭니다</p>
+        </div>
         <div class="app-grid">
             <a href="https://play.google.com/store/apps/details?id=com.signalgames.memoryflip" class="app-card" target="_blank">
                 <div class="app-icon">
                     <img src="memoryflip.png" alt="MemoryFlip">
                 </div>
                 <div class="app-name">MemoryFlip</div>
-                <div class="app-desc">과일 카드 매칭 퍼즐</div>
-                <div class="app-badge live">▶ Google Play</div>
+                <div class="app-desc">과일 카드를 뒤집어 짝을 맞춰보세요!<br>두뇌를 자극하는 기억력 퍼즐 게임</div>
+                <div class="app-badge live">
+                    <span>▶</span> Google Play
+                </div>
             </a>
             
             <div class="app-card coming-soon">
                 <div class="app-icon">🧱</div>
                 <div class="app-name">SnapBlock</div>
-                <div class="app-desc">블록 슈팅 퍼즐</div>
+                <div class="app-desc">블록을 조준하고 발사하세요!<br>전략적인 블록 슈팅 퍼즐</div>
                 <div class="app-badge soon">Coming Soon</div>
             </div>
         </div>
     </section>
     
     <!-- Apps Section -->
-    <section class="section">
-        <h2 class="section-title">📱 Apps</h2>
+    <section class="section" id="apps">
+        <div class="section-header">
+            <div class="section-tag">📱 APPS</div>
+            <h2 class="section-title">Life Made Simple</h2>
+            <p class="section-desc">일상을 더 편하게 만드는 심플한 앱을 만듭니다</p>
+        </div>
         <div class="app-grid">
             <div class="app-card coming-soon">
                 <div class="app-icon">💨</div>
                 <div class="app-name">BreathMate</div>
-                <div class="app-desc">금연 도우미</div>
+                <div class="app-desc">금연 여정을 함께하는 든든한 파트너<br>건강한 삶을 위한 첫 걸음</div>
                 <div class="app-badge soon">Coming Soon</div>
             </div>
             
             <div class="app-card coming-soon">
                 <div class="app-icon">📅</div>
                 <div class="app-name">DayHolic</div>
-                <div class="app-desc">하루 목표 & 일기</div>
+                <div class="app-desc">하루의 목표를 세우고 기록하세요<br>자기 성장을 위한 데일리 플래너</div>
                 <div class="app-badge soon">Coming Soon</div>
             </div>
         </div>
@@ -306,11 +481,19 @@
     
     <!-- Footer -->
     <footer>
-        <div class="footer-links">
-            <a href="privacy-policy.html">Privacy Policy</a>
-            <a href="mailto:signholic.dev@gmail.com">Contact</a>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <img src="logo.png" alt="Signholic">
+                <span>SIGNHOLIC</span>
+            </div>
+            <div class="footer-links">
+                <a href="privacy-policy.html">Privacy Policy</a>
+                <a href="mailto:sinho8976@gmail.com">Contact</a>
+            </div>
         </div>
-        <p class="copyright">© 2026 Signholic. All rights reserved.</p>
+        <div class="footer-bottom">
+            <p class="copyright">© 2026 Signholic. All rights reserved.</p>
+        </div>
     </footer>
 </body>
 </html>
