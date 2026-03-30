@@ -4,158 +4,313 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signholic - Mobile Games & Apps</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+        
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #F5EDDA 0%, #fff 100%);
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #F5EDDA;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
             color: #4A4340;
+            overflow-x: hidden;
         }
-        .container {
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #F5EDDA 0%, #fff 50%, #F5EDDA 100%);
+            padding: 80px 20px;
             text-align: center;
-            max-width: 600px;
+            position: relative;
         }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4787A' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            pointer-events: none;
+        }
+        
         .logo {
-            font-size: 3rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-            color: #4A4340;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: -1px;
+            position: relative;
+            display: inline-block;
         }
+        
         .logo span {
-            color: #D4787A;
+            background: linear-gradient(135deg, #D4787A, #C4A84D);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
+        
         .tagline {
-            font-size: 1.2rem;
-            color: #666;
-            margin-bottom: 2rem;
-        }
-        .category {
-            margin-bottom: 2rem;
-        }
-        .category h2 {
             font-size: 1.1rem;
-            color: #4A4340;
+            color: #888;
+            font-weight: 300;
             margin-bottom: 1rem;
         }
-        .apps {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
+        
+        .hero-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #7DBCAA, #5BA08E);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-top: 1rem;
         }
+        
+        /* Section */
+        .section {
+            padding: 60px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(90deg, #D4787A, transparent);
+            border-radius: 2px;
+        }
+        
+        /* App Grid */
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+        
         .app-card {
             background: white;
-            border-radius: 16px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            width: 150px;
-            transition: transform 0.2s;
-        }
-        .app-card:hover {
-            transform: translateY(-5px);
-        }
-        a.app-card {
+            border-radius: 20px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(74, 67, 64, 0.08);
+            transition: all 0.3s ease;
             text-decoration: none;
             color: inherit;
             display: block;
+            position: relative;
+            overflow: hidden;
         }
+        
+        .app-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #D4787A, #C4A84D, #7DBCAA);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .app-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(74, 67, 64, 0.15);
+        }
+        
+        .app-card:hover::before {
+            opacity: 1;
+        }
+        
         .app-card.coming-soon {
-            opacity: 0.6;
+            opacity: 0.7;
         }
-        .app-badge {
-            font-size: 0.65rem;
-            background: #7DBCAA;
-            color: white;
-            padding: 2px 6px;
-            border-radius: 8px;
-            margin-top: 0.3rem;
-            display: inline-block;
+        
+        .app-card.coming-soon:hover {
+            transform: translateY(-4px);
         }
-        .app-badge.soon {
-            background: #C4A84D;
-        }
+        
         .app-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 2.5rem;
-            margin-bottom: 0.5rem;
         }
+        
+        .app-icon img {
+            width: 80px;
+            height: 80px;
+            border-radius: 18px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
         .app-name {
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
         }
-        .links {
-            margin-top: 2rem;
-        }
-        .links a {
-            color: #7DBCAA;
-            text-decoration: none;
-            margin: 0 1rem;
-        }
-        .links a:hover {
-            text-decoration: underline;
-        }
-        footer {
-            margin-top: 3rem;
-            color: #999;
+        
+        .app-desc {
             font-size: 0.85rem;
+            color: #888;
+            margin-bottom: 1rem;
+        }
+        
+        .app-badge {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        
+        .app-badge.live {
+            background: linear-gradient(135deg, #7DBCAA, #5BA08E);
+            color: white;
+        }
+        
+        .app-badge.soon {
+            background: #F5EDDA;
+            color: #C4A84D;
+        }
+        
+        /* Footer */
+        footer {
+            background: #4A4340;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+        
+        .footer-links a:hover {
+            color: #7DBCAA;
+        }
+        
+        .copyright {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.85rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 600px) {
+            .logo {
+                font-size: 2.5rem;
+            }
+            .hero {
+                padding: 60px 20px;
+            }
+            .app-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+            .app-card {
+                padding: 1.5rem 1rem;
+            }
+            .app-icon {
+                width: 60px;
+                height: 60px;
+            }
+            .app-icon img {
+                width: 60px;
+                height: 60px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
+    <!-- Hero -->
+    <section class="hero">
         <div class="logo">Sign<span>holic</span></div>
-        <p class="tagline">Simple & Beautiful Mobile Games & Apps</p>
-        
-        <div class="category">
-            <h2>🎮 Games</h2>
-            <div class="apps">
-                <a href="https://play.google.com/store/apps/details?id=com.signholic.fruitmatch" class="app-card" target="_blank">
-                    <div class="app-icon">🃏</div>
-                    <div class="app-name">MemoryFlip</div>
-                    <div class="app-badge">Google Play</div>
-                </a>
-                <div class="app-card coming-soon">
-                    <div class="app-icon">🧱</div>
-                    <div class="app-name">SnapBlock</div>
-                    <div class="app-badge soon">Coming Soon</div>
+        <p class="tagline">Simple & Beautiful Mobile Experiences</p>
+        <div class="hero-badge">🎮 Games & Apps Studio</div>
+    </section>
+    
+    <!-- Games Section -->
+    <section class="section">
+        <h2 class="section-title">🎮 Games</h2>
+        <div class="app-grid">
+            <a href="https://play.google.com/store/apps/details?id=com.signalgames.memoryflip" class="app-card" target="_blank">
+                <div class="app-icon">
+                    <img src="memoryflip.png" alt="MemoryFlip">
                 </div>
+                <div class="app-name">MemoryFlip</div>
+                <div class="app-desc">과일 카드 매칭 퍼즐</div>
+                <div class="app-badge live">▶ Google Play</div>
+            </a>
+            
+            <div class="app-card coming-soon">
+                <div class="app-icon">🧱</div>
+                <div class="app-name">SnapBlock</div>
+                <div class="app-desc">블록 슈팅 퍼즐</div>
+                <div class="app-badge soon">Coming Soon</div>
             </div>
         </div>
-        
-        <div class="category">
-            <h2>📱 Apps</h2>
-            <div class="apps">
-                <div class="app-card coming-soon">
-                    <div class="app-icon">💨</div>
-                    <div class="app-name">BreathMate</div>
-                    <div class="app-badge soon">Coming Soon</div>
-                </div>
-                <div class="app-card coming-soon">
-                    <div class="app-icon">📅</div>
-                    <div class="app-name">DayHolic</div>
-                    <div class="app-badge soon">Coming Soon</div>
-                </div>
+    </section>
+    
+    <!-- Apps Section -->
+    <section class="section">
+        <h2 class="section-title">📱 Apps</h2>
+        <div class="app-grid">
+            <div class="app-card coming-soon">
+                <div class="app-icon">💨</div>
+                <div class="app-name">BreathMate</div>
+                <div class="app-desc">금연 도우미</div>
+                <div class="app-badge soon">Coming Soon</div>
+            </div>
+            
+            <div class="app-card coming-soon">
+                <div class="app-icon">📅</div>
+                <div class="app-name">DayHolic</div>
+                <div class="app-desc">하루 목표 & 일기</div>
+                <div class="app-badge soon">Coming Soon</div>
             </div>
         </div>
-        
-        <div class="links">
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
             <a href="privacy-policy.html">Privacy Policy</a>
             <a href="mailto:signholic.dev@gmail.com">Contact</a>
         </div>
-        
-        <footer>
-            &copy; 2026 Signholic. All rights reserved.
-        </footer>
-    </div>
+        <p class="copyright">© 2026 Signholic. All rights reserved.</p>
+    </footer>
 </body>
 </html>
