@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SignHolic — Educational Puzzle Games for Everyone</title>
-    <meta name="description" content="SignHolic creates educational puzzle games for all ages. Korean word quiz, math training, sudoku, and puzzle collections.">
+    <title>SignHolic — 모두를 위한 교육 퍼즐 게임</title>
+    <meta name="description" content="SignHolic은 모든 연령을 위한 교육 퍼즐 게임을 만듭니다. 단어 퀴즈, 수학 연산, 스도쿠 등.">
     <link rel="icon" type="image/png" href="logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -42,12 +42,26 @@
         .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--charcoal); }
         .nav-logo img { height: 36px; border-radius: 8px; }
         .nav-logo span { font-weight: 700; font-size: 1.15rem; letter-spacing: 0.5px; }
+        .nav-right { display: flex; align-items: center; gap: 28px; }
         .nav-links { display: flex; gap: 28px; }
         .nav-links a {
             color: var(--charcoal); text-decoration: none; font-size: 0.85rem;
             font-weight: 500; opacity: 0.7; transition: all 0.2s;
         }
         .nav-links a:hover { opacity: 1; color: var(--red); }
+        .lang-toggle {
+            display: flex; border-radius: 20px; overflow: hidden;
+            border: 1.5px solid rgba(74,67,64,0.15);
+            cursor: pointer; user-select: none;
+        }
+        .lang-btn {
+            padding: 5px 12px; font-size: 0.72rem; font-weight: 600;
+            letter-spacing: 0.5px; transition: all 0.2s;
+            background: transparent; color: var(--charcoal); opacity: 0.5;
+        }
+        .lang-btn.active {
+            background: var(--charcoal); color: var(--cream); opacity: 1;
+        }
 
         /* ── Hero ── */
         .hero {
@@ -83,9 +97,7 @@
             transition: all 0.3s; box-shadow: 0 4px 15px rgba(74,67,64,0.2);
         }
         .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(74,67,64,0.3); }
-        .hero-stats {
-            display: flex; gap: 48px; margin-top: 48px;
-        }
+        .hero-stats { display: flex; gap: 48px; margin-top: 48px; }
         .stat { text-align: center; }
         .stat-num { font-size: 2rem; font-weight: 700; color: var(--charcoal); }
         .stat-label { font-size: 0.75rem; color: #aaa; font-weight: 500; letter-spacing: 0.5px; }
@@ -107,29 +119,20 @@
             gap: 20px;
         }
         .app-card {
-            background: white;
-            border-radius: 20px;
-            padding: 28px 24px;
-            transition: all 0.3s;
-            text-decoration: none; color: inherit;
+            background: white; border-radius: 20px; padding: 28px 24px;
+            transition: all 0.3s; text-decoration: none; color: inherit;
             display: flex; flex-direction: column;
             position: relative; overflow: hidden;
             border: 1px solid rgba(74,67,64,0.05);
         }
-        .app-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 16px 40px rgba(0,0,0,0.1);
-        }
+        .app-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,0.1); }
         .app-card.coming-soon { opacity: 0.6; }
         .app-card.coming-soon:hover { transform: none; box-shadow: none; }
-        .card-color {
-            position: absolute; top: 0; left: 0; right: 0; height: 4px;
-        }
+        .card-color { position: absolute; top: 0; left: 0; right: 0; height: 4px; }
         .card-icon {
             width: 48px; height: 48px; border-radius: 14px;
             display: flex; align-items: center; justify-content: center;
-            font-size: 1.3rem; font-weight: 700; color: white;
-            margin-bottom: 16px;
+            font-size: 1.3rem; font-weight: 700; color: white; margin-bottom: 16px;
         }
         .card-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 4px; }
         .card-subtitle { font-size: 0.8rem; color: #aaa; margin-bottom: 12px; }
@@ -172,9 +175,10 @@
 
         /* ── Responsive ── */
         @media (max-width: 640px) {
-            nav { padding: 12px 20px; }
-            .nav-links { gap: 16px; }
-            .nav-links a { font-size: 0.78rem; }
+            nav { padding: 12px 16px; }
+            .nav-right { gap: 12px; }
+            .nav-links { gap: 12px; }
+            .nav-links a { font-size: 0.75rem; }
             .hero h1 { font-size: 2.2rem; }
             .hero-stats { gap: 24px; }
             .stat-num { font-size: 1.5rem; }
@@ -191,75 +195,81 @@
         <img src="logo.png" alt="SignHolic">
         <span>SignHolic</span>
     </a>
-    <div class="nav-links">
-        <a href="#education">Education</a>
-        <a href="#puzzles">Puzzles</a>
-        <a href="#about">About</a>
-        <a href="mailto:signholic.dev@gmail.com">Contact</a>
+    <div class="nav-right">
+        <div class="nav-links">
+            <a href="#education" data-ko="교육" data-en="Education">교육</a>
+            <a href="#puzzles" data-ko="퍼즐" data-en="Puzzles">퍼즐</a>
+            <a href="#about" data-ko="소개" data-en="About">소개</a>
+            <a href="mailto:signholic.dev@gmail.com" data-ko="연락처" data-en="Contact">연락처</a>
+        </div>
+        <div class="lang-toggle" onclick="toggleLang()">
+            <div class="lang-btn active" id="lang-ko">KO</div>
+            <div class="lang-btn" id="lang-en">EN</div>
+        </div>
     </div>
 </nav>
 
 <!-- Hero -->
 <div class="hero">
     <img src="logo.png" alt="SignHolic Logo" class="hero-logo">
-    <h1>Puzzles That<br>Make You <span class="accent">Think</span></h1>
-    <p>Educational puzzle games designed for all ages. Learn words, train your brain, and challenge your logic.</p>
-    <a href="#education" class="hero-cta">Explore Our Games &#8595;</a>
+    <h1 data-ko="퍼즐로<br><span class='accent'>생각</span>하다" data-en="Puzzles That<br>Make You <span class='accent'>Think</span>">퍼즐로<br><span class="accent">생각</span>하다</h1>
+    <p data-ko="모든 연령을 위한 교육 퍼즐 게임. 단어를 배우고, 두뇌를 훈련하고, 논리에 도전하세요." data-en="Educational puzzle games designed for all ages. Learn words, train your brain, and challenge your logic.">모든 연령을 위한 교육 퍼즐 게임. 단어를 배우고, 두뇌를 훈련하고, 논리에 도전하세요.</p>
+    <a href="#education" class="hero-cta" data-ko="게임 둘러보기 &#8595;" data-en="Explore Our Games &#8595;">게임 둘러보기 &#8595;</a>
     <div class="hero-stats">
-        <div class="stat"><div class="stat-num">6</div><div class="stat-label">GAMES</div></div>
-        <div class="stat"><div class="stat-num">6,900+</div><div class="stat-label">WORD DATA</div></div>
-        <div class="stat"><div class="stat-num">3</div><div class="stat-label">LANGUAGES</div></div>
+        <div class="stat"><div class="stat-num">6</div><div class="stat-label" data-ko="게임" data-en="GAMES">게임</div></div>
+        <div class="stat"><div class="stat-num">6,900+</div><div class="stat-label" data-ko="단어 데이터" data-en="WORD DATA">단어 데이터</div></div>
+        <div class="stat"><div class="stat-num">3</div><div class="stat-label" data-ko="지원 언어" data-en="LANGUAGES">지원 언어</div></div>
     </div>
 </div>
 
 <!-- Education Section -->
 <section id="education">
     <div class="section-inner">
-        <div class="section-label">Education Series</div>
-        <div class="section-title">Learn While You Play</div>
-        <div class="section-desc">Master vocabulary, sharpen arithmetic, and train logic — all through beautifully crafted puzzle games.</div>
+        <div class="section-label" data-ko="교육 시리즈" data-en="Education Series">교육 시리즈</div>
+        <div class="section-title" data-ko="놀면서 배우세요" data-en="Learn While You Play">놀면서 배우세요</div>
+        <div class="section-desc" data-ko="어휘력, 연산 능력, 논리적 사고 — 잘 만든 퍼즐 게임 하나로 모두 훈련할 수 있습니다." data-en="Master vocabulary, sharpen arithmetic, and train logic — all through beautifully crafted puzzle games.">어휘력, 연산 능력, 논리적 사고 — 잘 만든 퍼즐 게임 하나로 모두 훈련할 수 있습니다.</div>
         <div class="app-grid">
             <div class="app-card coming-soon">
                 <div class="card-color" style="background:var(--red);"></div>
                 <div class="card-icon" style="background:var(--red);">W</div>
                 <div class="card-title">SignWord</div>
-                <div class="card-subtitle">Korean & English Word Quiz</div>
+                <div class="card-subtitle" data-ko="한글 & 영어 단어 퀴즈" data-en="Korean & English Word Quiz">한글 & 영어 단어 퀴즈</div>
                 <ul class="card-features">
-                    <li>4,000+ Korean & English words</li>
-                    <li>1,408 textbook vocabulary</li>
-                    <li>558 Hanja annotations</li>
-                    <li>TTS pronunciation support</li>
-                    <li>Korean learner mode</li>
+                    <li data-ko="한글 + 영어 4,000단어 이상" data-en="4,000+ Korean & English words">한글 + 영어 4,000단어 이상</li>
+                    <li data-ko="교과서 단어 1,408개" data-en="1,408 textbook vocabulary">교과서 단어 1,408개</li>
+                    <li data-ko="한자 병기 558개" data-en="558 Hanja annotations">한자 병기 558개</li>
+                    <li data-ko="TTS 발음 지원" data-en="TTS pronunciation support">TTS 발음 지원</li>
+                    <li data-ko="한국어 학습자 모드" data-en="Korean learner mode">한국어 학습자 모드</li>
                 </ul>
-                <div class="card-badge soon">Coming Soon</div>
+                <div class="card-badge soon" data-ko="출시 예정" data-en="Coming Soon">출시 예정</div>
             </div>
             <div class="app-card coming-soon">
                 <div class="card-color" style="background:var(--blue);"></div>
                 <div class="card-icon" style="background:var(--blue);">M</div>
                 <div class="card-title">SignMath</div>
-                <div class="card-subtitle">Math Arithmetic Puzzle</div>
+                <div class="card-subtitle" data-ko="기초 수학 연산 퍼즐" data-en="Math Arithmetic Puzzle">기초 수학 연산 퍼즐</div>
                 <ul class="card-features">
-                    <li>6 levels, 22 units</li>
-                    <li>Times tables drill (2-9)</li>
-                    <li>1-minute marathon mode</li>
-                    <li>Wrong note review</li>
-                    <li>Parent dashboard with PIN</li>
+                    <li data-ko="6단계, 22단원 구성" data-en="6 levels, 22 units">6단계, 22단원 구성</li>
+                    <li data-ko="구구단 집중 훈련 (2~9단)" data-en="Times tables drill (2-9)">구구단 집중 훈련 (2~9단)</li>
+                    <li data-ko="1분 마라톤 모드" data-en="1-minute marathon mode">1분 마라톤 모드</li>
+                    <li data-ko="오답 노트 복습" data-en="Wrong note review">오답 노트 복습</li>
+                    <li data-ko="보호자 대시보드 (PIN)" data-en="Parent dashboard with PIN">보호자 대시보드 (PIN)</li>
                 </ul>
-                <div class="card-badge soon">Coming Soon</div>
+                <div class="card-badge soon" data-ko="출시 예정" data-en="Coming Soon">출시 예정</div>
             </div>
             <div class="app-card coming-soon">
                 <div class="card-color" style="background:var(--green);"></div>
                 <div class="card-icon" style="background:var(--green);">S</div>
                 <div class="card-title">SignDoku</div>
-                <div class="card-subtitle">Sudoku for All Levels</div>
+                <div class="card-subtitle" data-ko="누구나 즐기는 스도쿠" data-en="Sudoku for All Levels">누구나 즐기는 스도쿠</div>
                 <ul class="card-features">
-                    <li>4x4 / 6x6 / 9x9 grids</li>
-                    <li>Note mode for candidates</li>
-                    <li>Hint system</li>
-                    <li>3-mistake game over</li>
-                    <li>Endless puzzle generation</li>
+                    <li data-ko="4x4 / 6x6 / 9x9 크기" data-en="4x4 / 6x6 / 9x9 grids">4x4 / 6x6 / 9x9 크기</li>
+                    <li data-ko="노트 모드 (후보 숫자 메모)" data-en="Note mode for candidates">노트 모드 (후보 숫자 메모)</li>
+                    <li data-ko="힌트 시스템" data-en="Hint system">힌트 시스템</li>
+                    <li data-ko="3오류 시 게임 오버" data-en="3-mistake game over">3오류 시 게임 오버</li>
+                    <li data-ko="무한 퍼즐 생성" data-en="Endless puzzle generation">무한 퍼즐 생성</li>
                 </ul>
-                <div class="card-badge soon">Coming Soon</div>
+                <div class="card-badge soon" data-ko="출시 예정" data-en="Coming Soon">출시 예정</div>
             </div>
         </div>
     </div>
@@ -268,9 +278,9 @@
 <!-- Puzzle Collection Section -->
 <section id="puzzles" class="about-bg">
     <div class="section-inner">
-        <div class="section-label">Puzzle Collections</div>
-        <div class="section-title">More Puzzles, One App</div>
-        <div class="section-desc">Each collection bundles multiple puzzle games into a single app. Pick your favorite genre.</div>
+        <div class="section-label" data-ko="퍼즐 컬렉션" data-en="Puzzle Collections">퍼즐 컬렉션</div>
+        <div class="section-title" data-ko="다양한 퍼즐, 하나의 앱" data-en="More Puzzles, One App">다양한 퍼즐, 하나의 앱</div>
+        <div class="section-desc" data-ko="여러 퍼즐 게임을 하나의 앱에 담았습니다. 좋아하는 장르를 골라보세요." data-en="Each collection bundles multiple puzzle games into a single app. Pick your favorite genre.">여러 퍼즐 게임을 하나의 앱에 담았습니다. 좋아하는 장르를 골라보세요.</div>
         <div class="app-grid">
             <div class="app-card coming-soon">
                 <div class="card-color" style="background:var(--yellow);"></div>
@@ -278,33 +288,33 @@
                 <div class="card-title">Block Puzzles</div>
                 <div class="card-subtitle">SnapBlock + Slide + Merge</div>
                 <ul class="card-features">
-                    <li>Block fitting (Tetris-style)</li>
-                    <li>Classic sliding puzzle</li>
-                    <li>2048-style merge</li>
+                    <li data-ko="블록 맞추기 (테트리스 스타일)" data-en="Block fitting (Tetris-style)">블록 맞추기 (테트리스 스타일)</li>
+                    <li data-ko="클래식 슬라이드 퍼즐" data-en="Classic sliding puzzle">클래식 슬라이드 퍼즐</li>
+                    <li data-ko="2048 스타일 합치기" data-en="2048-style merge">2048 스타일 합치기</li>
                 </ul>
-                <div class="card-badge soon">Coming Soon</div>
+                <div class="card-badge soon" data-ko="출시 예정" data-en="Coming Soon">출시 예정</div>
             </div>
             <div class="app-card coming-soon">
                 <div class="card-color" style="background:var(--purple);"></div>
                 <div class="card-icon" style="background:var(--purple);">T</div>
                 <div class="card-title">Match Puzzles</div>
-                <div class="card-subtitle">Tile Matching + Sort</div>
+                <div class="card-subtitle" data-ko="타일 매칭 + 정렬" data-en="Tile Matching + Sort">타일 매칭 + 정렬</div>
                 <ul class="card-features">
-                    <li>Tile pair matching</li>
-                    <li>Color sort challenge</li>
+                    <li data-ko="타일 쌍 맞추기" data-en="Tile pair matching">타일 쌍 맞추기</li>
+                    <li data-ko="색상 정렬 챌린지" data-en="Color sort challenge">색상 정렬 챌린지</li>
                 </ul>
-                <div class="card-badge soon">Coming Soon</div>
+                <div class="card-badge soon" data-ko="출시 예정" data-en="Coming Soon">출시 예정</div>
             </div>
             <div class="app-card coming-soon">
                 <div class="card-color" style="background:var(--orange);"></div>
                 <div class="card-icon" style="background:var(--orange);">L</div>
                 <div class="card-title">Logic Puzzles</div>
-                <div class="card-subtitle">Pipe Connect + Nonogram</div>
+                <div class="card-subtitle" data-ko="파이프 연결 + 노노그램" data-en="Pipe Connect + Nonogram">파이프 연결 + 노노그램</div>
                 <ul class="card-features">
-                    <li>Pipe rotation puzzles</li>
-                    <li>Nonogram pixel art</li>
+                    <li data-ko="파이프 회전 퍼즐" data-en="Pipe rotation puzzles">파이프 회전 퍼즐</li>
+                    <li data-ko="노노그램 픽셀 아트" data-en="Nonogram pixel art">노노그램 픽셀 아트</li>
                 </ul>
-                <div class="card-badge soon">Coming Soon</div>
+                <div class="card-badge soon" data-ko="출시 예정" data-en="Coming Soon">출시 예정</div>
             </div>
         </div>
     </div>
@@ -313,19 +323,19 @@
 <!-- Live Section -->
 <section>
     <div class="section-inner">
-        <div class="section-label">Available Now</div>
-        <div class="section-title">On Google Play</div>
-        <div class="section-desc">Download and play today.</div>
+        <div class="section-label" data-ko="지금 플레이" data-en="Available Now">지금 플레이</div>
+        <div class="section-title" data-ko="Google Play에서 만나세요" data-en="On Google Play">Google Play에서 만나세요</div>
+        <div class="section-desc" data-ko="지금 바로 다운로드하고 플레이하세요." data-en="Download and play today.">지금 바로 다운로드하고 플레이하세요.</div>
         <div class="app-grid">
             <a href="https://play.google.com/store/apps/details?id=com.signalgames.memoryflip" class="app-card" target="_blank">
                 <div class="card-color" style="background:var(--pink);"></div>
                 <div class="card-icon" style="background:var(--pink);">&#x1F0CF;</div>
                 <div class="card-title">MemoryFlip</div>
-                <div class="card-subtitle">Card Matching Puzzle</div>
+                <div class="card-subtitle" data-ko="카드 매칭 퍼즐" data-en="Card Matching Puzzle">카드 매칭 퍼즐</div>
                 <ul class="card-features">
-                    <li>Flip and match card pairs</li>
-                    <li>Multiple themes</li>
-                    <li>Score tracking</li>
+                    <li data-ko="카드를 뒤집어 같은 쌍 찾기" data-en="Flip and match card pairs">카드를 뒤집어 같은 쌍 찾기</li>
+                    <li data-ko="다양한 테마" data-en="Multiple themes">다양한 테마</li>
+                    <li data-ko="점수 기록" data-en="Score tracking">점수 기록</li>
                 </ul>
                 <div class="card-badge live">Google Play &#8599;</div>
             </a>
@@ -336,29 +346,29 @@
 <!-- About -->
 <section id="about" class="about-bg">
     <div class="section-inner">
-        <div class="section-label">About SignHolic</div>
-        <div class="section-title">Simple. Beautiful. For Everyone.</div>
-        <div class="section-desc">We believe puzzle games should be accessible, elegant, and genuinely helpful for learning.</div>
+        <div class="section-label" data-ko="SignHolic 소개" data-en="About SignHolic">SignHolic 소개</div>
+        <div class="section-title" data-ko="심플하게. 아름답게. 모두를 위해." data-en="Simple. Beautiful. For Everyone.">심플하게. 아름답게. 모두를 위해.</div>
+        <div class="section-desc" data-ko="퍼즐 게임은 누구에게나 열려 있고, 아름답고, 배움에 도움이 되어야 한다고 믿습니다." data-en="We believe puzzle games should be accessible, elegant, and genuinely helpful for learning.">퍼즐 게임은 누구에게나 열려 있고, 아름답고, 배움에 도움이 되어야 한다고 믿습니다.</div>
         <div class="about-grid">
             <div class="about-item">
                 <div class="about-icon" style="color:var(--red);">&#9673;</div>
-                <div class="about-title">All Ages Welcome</div>
-                <div class="about-desc">From students to seniors, from beginners to experts. No age restrictions, just great puzzles.</div>
+                <div class="about-title" data-ko="모든 연령 환영" data-en="All Ages Welcome">모든 연령 환영</div>
+                <div class="about-desc" data-ko="학생부터 시니어까지, 입문자부터 고수까지. 나이 제한 없이 누구나 즐길 수 있습니다." data-en="From students to seniors, from beginners to experts. No age restrictions, just great puzzles.">학생부터 시니어까지, 입문자부터 고수까지. 나이 제한 없이 누구나 즐길 수 있습니다.</div>
             </div>
             <div class="about-item">
                 <div class="about-icon" style="color:var(--yellow);">&#9673;</div>
-                <div class="about-title">Learn by Playing</div>
-                <div class="about-desc">Every game is designed to train a specific skill — vocabulary, arithmetic, logic, or pattern recognition.</div>
+                <div class="about-title" data-ko="놀면서 배우기" data-en="Learn by Playing">놀면서 배우기</div>
+                <div class="about-desc" data-ko="모든 게임은 특정 능력을 훈련하도록 설계되었습니다 — 어휘, 연산, 논리, 패턴 인식." data-en="Every game is designed to train a specific skill — vocabulary, arithmetic, logic, or pattern recognition.">모든 게임은 특정 능력을 훈련하도록 설계되었습니다 — 어휘, 연산, 논리, 패턴 인식.</div>
             </div>
             <div class="about-item">
                 <div class="about-icon" style="color:var(--green);">&#9673;</div>
-                <div class="about-title">Offline First</div>
-                <div class="about-desc">No internet required. Play anywhere, anytime. Your progress is saved locally.</div>
+                <div class="about-title" data-ko="오프라인 우선" data-en="Offline First">오프라인 우선</div>
+                <div class="about-desc" data-ko="인터넷 없이 플레이 가능. 언제 어디서나. 진행 상황은 자동 저장됩니다." data-en="No internet required. Play anywhere, anytime. Your progress is saved locally.">인터넷 없이 플레이 가능. 언제 어디서나. 진행 상황은 자동 저장됩니다.</div>
             </div>
             <div class="about-item">
                 <div class="about-icon" style="color:var(--blue);">&#9673;</div>
-                <div class="about-title">Clean Design</div>
-                <div class="about-desc">Minimal UI with warm colors. No flashy distractions — just you and the puzzle.</div>
+                <div class="about-title" data-ko="깔끔한 디자인" data-en="Clean Design">깔끔한 디자인</div>
+                <div class="about-desc" data-ko="따뜻한 색감의 미니멀 UI. 화려한 효과 없이 — 오직 나와 퍼즐뿐." data-en="Minimal UI with warm colors. No flashy distractions — just you and the puzzle.">따뜻한 색감의 미니멀 UI. 화려한 효과 없이 — 오직 나와 퍼즐뿐.</div>
             </div>
         </div>
     </div>
@@ -368,12 +378,26 @@
 <footer>
     <div class="footer-inner">
         <div class="footer-links">
-            <a href="privacy-policy.html">Privacy Policy</a>
-            <a href="mailto:signholic.dev@gmail.com">Contact</a>
+            <a href="privacy-policy.html" data-ko="개인정보처리방침" data-en="Privacy Policy">개인정보처리방침</a>
+            <a href="mailto:signholic.dev@gmail.com" data-ko="연락처" data-en="Contact">연락처</a>
         </div>
         <div class="footer-copy">&copy; 2026 SignHolic. All rights reserved.</div>
     </div>
 </footer>
+
+<script>
+let currentLang = 'ko';
+
+function toggleLang() {
+    currentLang = currentLang === 'ko' ? 'en' : 'ko';
+    document.getElementById('lang-ko').classList.toggle('active', currentLang === 'ko');
+    document.getElementById('lang-en').classList.toggle('active', currentLang === 'en');
+    document.documentElement.lang = currentLang;
+    document.querySelectorAll('[data-ko]').forEach(el => {
+        el.innerHTML = el.getAttribute('data-' + currentLang);
+    });
+}
+</script>
 
 </body>
 </html>
